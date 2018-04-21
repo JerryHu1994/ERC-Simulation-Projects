@@ -1,0 +1,19 @@
+# Unix submit description file
+# alk_1000.sub  -- python job
+
+universe                = docker
+docker_image            = jmleach/chtc:cantera
+executable              = alk_1000.sh
+arguments               = $(ProcId)
+log                     = log/alk_1000_$(ProcId).log
+output                  = out/alk_1000_$(ProcId).out
+error                   = err/alk_1000_$(ProcId).err
+transfer_input_files    = alk_1000.sh, LLNL_gasoline_20170621_nox_galway.cti,Wiebe_two_zone_crev_heatxfer_reformate_LLNL_heatrel_HTCONDOR.py,Wrapper_ConstantP_Sweep_Step2_alk_1000.py,Alk_1000_80C_CONDOR_step2.xlsx
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue 27

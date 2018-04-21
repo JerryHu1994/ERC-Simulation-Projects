@@ -1,0 +1,17 @@
+# Unix submit description file
+# Wiebe_Condor.sub -- python job
+
+universe                = docker
+docker_image            = jmleach/chtc:cantera
+executable              = Wiebe_Condor.sh
+log                     = log/Wiebe_Condor.log
+output                  = out/Wiebe_Condor.out
+error                   = err/Wiebe_Condor.err
+transfer_input_files    = Wiebe_Condor.sh, Wrapper_constantmass_single_CONDOR.py, Wiebe_two_zone_crev_heatxfer_reformate_ERCPRF_heatrel_egfix_CONDOR.py, Wiebe_two_zone_crev_heatxfer_reformate_LLNL_heatrel_HTCONDOR.py, RenKokjohn.cti, Iso_2000_CONDOR.xlsx
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue 1

@@ -1,0 +1,19 @@
+# Unix submit description file
+# 4_9_temperature.sub  -- python job
+
+universe                = docker
+docker_image            = jmleach/chtc:cantera
+executable              = 4_9_temperature.sh
+arguments               = $(ProcId)
+log                     = log/4_9_temperature_$(ProcId).log
+output                  = out/4_9_temperature_$(ProcId).out
+error                   = err/4_9_temperature_$(ProcId).err
+transfer_input_files    = 4_9_temperature.sh, LLNL_gasoline_20170621_nox_galway.cti, Wiebe_two_zone_crev_heatxfer_reformate_LLNL_heatrel_HTCONDOR.py, Wrapper_constantmass_Sweep_CONDOR.py, Iso_2000_CONDOR.xlsx, T_ivc_Condor.txt
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue 27

@@ -1,0 +1,37 @@
+Unable to find image 'jmleach/chtc:cantera' locally
+Trying to pull repository docker.io/jmleach/chtc ... 
+cantera: Pulling from docker.io/jmleach/chtc
+85b1f47fba49: Pulling fs layer
+f4070d96116d: Pulling fs layer
+8b1142e4866d: Pulling fs layer
+924a14505c9a: Pulling fs layer
+dcb96a89fec6: Pulling fs layer
+1c94855c264a: Pulling fs layer
+2ae0a5ea203b: Pulling fs layer
+924a14505c9a: Waiting
+dcb96a89fec6: Waiting
+2ae0a5ea203b: Waiting
+1c94855c264a: Waiting
+85b1f47fba49: Verifying Checksum
+85b1f47fba49: Download complete
+924a14505c9a: Verifying Checksum
+924a14505c9a: Download complete
+dcb96a89fec6: Verifying Checksum
+dcb96a89fec6: Download complete
+f4070d96116d: Verifying Checksum
+f4070d96116d: Download complete
+2ae0a5ea203b: Verifying Checksum
+2ae0a5ea203b: Download complete
+1c94855c264a: Verifying Checksum
+1c94855c264a: Download complete
+85b1f47fba49: Pull complete
+f4070d96116d: Pull complete
+8b1142e4866d: Verifying Checksum
+8b1142e4866d: Download complete
+8b1142e4866d: Pull complete
+924a14505c9a: Pull complete
+dcb96a89fec6: Pull complete
+1c94855c264a: Pull complete
+2ae0a5ea203b: Pull complete
+Digest: sha256:8fa310517ee45e40a7a5178c47503056f091844a7db99a86f1218acd9a97e5ee
+Status: Downloaded newer image for docker.io/jmleach/chtc:cantera

@@ -1,0 +1,11 @@
+# Unix submit description file
+# helloworld.sub -- simple python job
+
+executable              = python_helloworld.sh
+log                     = python_helloworld.log
+output                  = python_helloworld.out
+error                   = python_helloworld.err
+transfer_input_files    = helloworld.py
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+queue
