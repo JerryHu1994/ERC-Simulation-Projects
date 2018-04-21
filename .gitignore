@@ -1,0 +1,8 @@
+*.npz
+*.npy
+*.zip
+.DS_Store
+.err
+.out
+.log
+core.8
