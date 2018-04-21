@@ -6,7 +6,7 @@ from Wiebe_two_zone_crev_heatxfer_reformate_LLNL_heatrel_HTCONDOR import Engine
 import sys
 import numpy as np
 import cantera as ct
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import csv
 import datetime
 import time

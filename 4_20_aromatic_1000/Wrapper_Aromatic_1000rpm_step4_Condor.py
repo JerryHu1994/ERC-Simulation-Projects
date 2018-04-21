@@ -21,7 +21,7 @@ from openpyxl import load_workbook
 ivc_range_arr = np.array([345, 355, 365, 375, 380, 385, 390, 395])
 Wiebe_theta_0_arr = np.array([2, 4, 6, 13, 18, 18, 18, 18])
 Wiebe_delta_theta_arr = np.array([37, 38, 38, 37, 40, 40, 40, 40]) 
-BFlag_arr = np.array([0.95, 0,95, 0.95, 0.95, 0.95, 0.95, 0.95])
+BFlag_arr = np.array([0.95, 0.95, 0,95, 0.95, 0.95, 0.95, 0.95, 0.95])
 
 
 if (len(sys.argv) != 2):
