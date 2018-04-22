@@ -1,0 +1,19 @@
+# Unix submit description file
+# aro_2000.sub  -- python job
+
+universe                = docker
+docker_image            = jmleach/chtc:cantera
+executable              = aro_2000.sh
+arguments               = $(ProcId)
+log                     = log/aro_2000_$(ProcId).log
+output                  = out/aro_2000_$(ProcId).out
+error                   = err/aro_2000_$(ProcId).err
+transfer_input_files    = aro_2000.sh, LLNL_gasoline_20170621_nox_galway.cti, Wiebe_two_zone_crev_heatxfer_reformate_LLNL_heatrel_HTCONDOR.py, Wrapper_Aromatic_2000rpm_step4_CONDOR.py, Aro_2000_step4_CONDOR.xlsx
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue 13
