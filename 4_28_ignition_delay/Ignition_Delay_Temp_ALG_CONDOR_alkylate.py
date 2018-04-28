@@ -134,9 +134,9 @@ while (Temp_cur < curr_temp+50 and time < 20e-3):
 # outputs includes: Final_temp, tau_arr
 file_to_save = "ignition_{}.dat".format(jobid)
 with open(file_to_save, "w") as f:
-    f.write(Temp)
-    f.write(time_cur)
-    f.write(Press)
+    f.write('{}\n'.format(Temp))
+    f.write('{}\n'.format(time_cur))
+    f.write('{}\n'.format(Press))
 
 '''
 conlevels=np.arange(1e-3,10e-3,1e-3)
