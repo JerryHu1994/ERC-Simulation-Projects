@@ -132,9 +132,11 @@ while (Temp_cur < curr_temp+50 and time < 20e-3):
      
 # save the output for each job
 # outputs includes: Final_temp, tau_arr
-print(Temp)
-print(time_cur)
-print(Press)
+file_to_save = "ignition_{}.dat".format(jobid)
+with open(file_to_save, "w") as f:
+    f.write(Temp)
+    f.write(time_cur)
+    f.write(Press)
 
 '''
 conlevels=np.arange(1e-3,10e-3,1e-3)
