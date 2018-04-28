@@ -110,7 +110,7 @@ curr_pres = ig_press_cont[pres_idx]
 tau_result = np.zeros((32))
 temp_result = np.zeros((32))
 pres_result = np.zeros((32))
-for idx in range(ig_temp_cont):
+for idx in range(len(ig_temp_cont)):
     curr_temp = ig_temp_cont[idx]
     print("job_id:{} pressure:{} temperature: {}".format(jobid, curr_pres, curr_temp))        
     gas.TPX=curr_temp,curr_pres,x_init    
@@ -134,7 +134,7 @@ for idx in range(ig_temp_cont):
         Press_cv.append(Press)
         Temp_cv.append(Temp)
         timeapp.append(time)
-    tau_result[idx] = Time_cur
+    tau_result[idx] = time_cur
     temp_result[idx] = Temp
     pres_result[idx] = Press
     #Final_temp[n,o]=Temp     
@@ -154,7 +154,7 @@ cb.ax.tick_params(labelsize=20)
 '''
 #np.save('LLNL_aro_mech_IGPress',IG_Press)
 #np.save('LLNL_aro_mech_IGTemp',IG_Temp)
-np.save('LLNL_aro_mech_Tau_{}'.format(jobid),tar_result)
+np.save('LLNL_aro_mech_Tau_{}'.format(jobid),tau_result)
 np.save('LLNL_aro_mech_FinalTemp_{}'.format(jobid),temp_result)
 np.save('LLNL_aro_mech_Pres_{}'.format(jobid),pres_result)
 #np.savefig('IgdelayLLNL')
