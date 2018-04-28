@@ -101,8 +101,8 @@ IG_Temp,IG_Press=np.meshgrid(ig_temp_cont,ig_press_cont,indexing='ij')  #Meshgri
 
 
 # divide the double for loop into 32*30 parallel jobs
-temp_idx, pres_idx = jobid/len(ig_temp_cont), jobid%len(ig_temp_cont)
-curr_temp, curr_pres = ig_temp_count[temp_idx], ig_press_cont[pres_idx]
+temp_idx, pres_idx = (int)(jobid/len(ig_temp_cont)), (int)(jobid%len(ig_temp_cont))
+curr_temp, curr_pres = ig_temp_cont[temp_idx], ig_press_cont[pres_idx]
 
 #for n in range (0,np.size(ig_temp_cont)):# 32 jobs
     #print(n)
@@ -116,7 +116,7 @@ Temp_cur=0#ig_temp_cont[n]
 Press_cv=[]
 Temp_cv=[]
 timeapp=[]
-while (Temp_cur < ig_temp_cont[n]+50 and time < 20e-3):
+while (Temp_cur < curr_temp+50 and time < 20e-3):
     time += 1.e-6
     sim2.advance(time)
     time_cur=time #milliseconds

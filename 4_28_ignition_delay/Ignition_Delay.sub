@@ -1,13 +1,19 @@
 # Unix submit description file
 # Ignition_Delay.sub -- python job
 
+universe                = docker
+docker_image            = jmleach/chtc:cantera
 executable              = Ignition_Delay.sh
-arugments               = $(ProcId)
+arguments               = $(ProcId)
 log                     = log/Ignition_Delay_$(ProcId).log
 output                  = out/Ignition_Delay_$(ProcId).out
 error                   = err/Ignition_Delay_$(ProcId).err
-transfer_input_files    = Ignition_Delay_Temp_ALG.py, LLNL_gasoline_20170621_nox_galway.cti, Ignition_Delay.sh 
+transfer_input_files    = Ignition_Delay_Temp_ALG_CONDOR_alkylate.py, LLNL_gasoline_20170621_nox_galway.cti, Ignition_Delay.sh 
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
 
 queue 960
