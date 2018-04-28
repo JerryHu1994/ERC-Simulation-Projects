@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ig_temp_cont, ig_press_cont = 32, 30
-out/Ignition_Delay_$(ProcId).out)
 tau_arr = np.zeros((np.size(ig_temp_cont),np.size(ig_press_cont)))
 Final_temp=np.zeros((np.size(ig_temp_cont),np.size(ig_press_cont)))
 
