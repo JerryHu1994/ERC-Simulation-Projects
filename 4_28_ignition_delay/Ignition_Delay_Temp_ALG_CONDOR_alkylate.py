@@ -101,42 +101,47 @@ IG_Temp,IG_Press=np.meshgrid(ig_temp_cont,ig_press_cont,indexing='ij')  #Meshgri
 
 
 # divide the double for loop into 32*30 parallel jobs
-temp_idx, pres_idx = (int)(jobid/len(ig_temp_cont)), (int)(jobid%len(ig_temp_cont))
-curr_temp, curr_pres = ig_temp_cont[temp_idx], ig_press_cont[pres_idx]
+pres_idx = jobid
+curr_pres = ig_press_cont[pres_idx]
 
 #for n in range (0,np.size(ig_temp_cont)):# 32 jobs
     #print(n)
     #for o in range (0,np.size(ig_press_cont)):# 30 jobs
-print("job_id:{} temperature:{} pressure:{}".format(jobid, curr_temp, curr_pres))        
-gas.TPX=curr_temp,curr_pres,x_init    
-r1=ct.IdealGasReactor(gas)     #Ignition Delay reactor    
-sim2= ct.ReactorNet([r1])    
-time=0      #Initialize Time
-Temp_cur=0#ig_temp_cont[n]
-Press_cv=[]
-Temp_cv=[]
-timeapp=[]
-while (Temp_cur < curr_temp+50 and time < 20e-3):
-    time += 1.e-6
-    sim2.advance(time)
-    time_cur=time #milliseconds
-    Press=r1.thermo.P
-    Temp=r1.T
-    Temp_cur=Temp
+tau_result = np.zeros((32))
+temp_result = np.zeros((32))
+pres_result = np.zeros((32))
+for idx in range(ig_temp_cont):
+    curr_temp = ig_temp_cont[idx]
+    print("job_id:{} pressure:{} temperature: {}".format(jobid, curr_pres, curr_temp))        
+    gas.TPX=curr_temp,curr_pres,x_init    
+    r1=ct.IdealGasReactor(gas)     #Ignition Delay reactor    
+    sim2= ct.ReactorNet([r1])    
+    time=0      #Initialize Time
+    Temp_cur=0#ig_temp_cont[n]
+    Press_cv=[]
+    Temp_cv=[]
+    timeapp=[]
+
+
+    while (Temp_cur < curr_temp+50 and time < 20e-3):
+        time += 1.e-6
+        sim2.advance(time)
+        time_cur=time #milliseconds
+        Press=r1.thermo.P
+        Temp=r1.T
+        Temp_cur=Temp
 #            times.append(time_cur)
-    Press_cv.append(Press)
-    Temp_cv.append(Temp)
-    timeapp.append(time)
+        Press_cv.append(Press)
+        Temp_cv.append(Temp)
+        timeapp.append(time)
+    tau_result[idx] = Time_cur
+    temp_result[idx] = Temp
+    pres_result[idx] = Press
     #Final_temp[n,o]=Temp     
     #tau_arr[n,o]=(time_cur)
      
 # save the output for each job
 # outputs includes: Final_temp, tau_arr
-file_to_save = "ignition_{}.dat".format(jobid)
-with open(file_to_save, "w") as f:
-    f.write('{}\n'.format(Temp))
-    f.write('{}\n'.format(time_cur))
-    f.write('{}\n'.format(Press))
 
 '''
 conlevels=np.arange(1e-3,10e-3,1e-3)
@@ -149,6 +154,7 @@ cb.ax.tick_params(labelsize=20)
 '''
 #np.save('LLNL_aro_mech_IGPress',IG_Press)
 #np.save('LLNL_aro_mech_IGTemp',IG_Temp)
-#np.save('LLNL_aro_mech_Tau',tau_arr)
-#np.save('LLNL_aro_mech_FinalTemp',Final_temp)
+np.save('LLNL_aro_mech_Tau_{}'.format(jobid),tar_result)
+np.save('LLNL_aro_mech_FinalTemp_{}'.format(jobid),temp_result)
+np.save('LLNL_aro_mech_Pres_{}'.format(jobid),pres_result)
 #np.savefig('IgdelayLLNL')
