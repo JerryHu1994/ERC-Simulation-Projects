@@ -1,0 +1,19 @@
+# Unix submit description file
+# 5_6_condor.sub -- python job
+
+universe                = docker
+docker_image            = jmleach/chtc:cantera
+executable              = 5_6_condor.sh
+arguments               = $(ProcId)
+log                     = log/5_6_condor_$(ProcId).log
+output                  = out/5_6_condor_$(ProcId).out
+error                   = err/5_6_condor_$(ProcId).err
+transfer_input_files    = Thesis_IgDelay_wrapper_LLNL_Aromatic_Condor.py, 20180422_18-13.10_Aro_2000rpm_step4_CONDOR_395.npz, Ignition_Delay_Temp_ALG_CONDOR_func.py, LLNL_gasoline_20170621_nox_galway.cti, RenKokjohn.cti, 5_6_condor.sh, Aro_2000_step4_CONDOR.XLSX
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+
+request_cpus = 1
+request_memory = 4GB
+request_disk = 10GB
+
+queue 5
