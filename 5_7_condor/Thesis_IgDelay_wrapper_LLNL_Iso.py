@@ -62,7 +62,7 @@ subloop = np.linspace(start, end, loopsize)
 print ("starting index: {}".format(int(start)))
 print ("ending index: {}".format(int(end)))
 for i in subloop:
-	i = int(i)
+    i = int(i)
     if np.remainder(i,380)<1e-8:
         print('At Crank Angle'+str(CA[i]))
     x_current=X[int(EvalIndices[i]),:]
