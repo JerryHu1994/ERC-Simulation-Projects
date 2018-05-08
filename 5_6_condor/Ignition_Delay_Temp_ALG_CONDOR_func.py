@@ -3,9 +3,9 @@ def CV_IgDelay_Thesis(x_initial,Temp,Press,PureFlag,fname,RK_Flag):
     import time as ttime
     import numpy as np
     import cantera as ct
-    import matplotlib.pyplot as plt
+    #import matplotlib.pyplot as plt
     import csv
-    from scipy.interpolate import interp1d 
+    #from scipy.interpolate import interp1d 
     import math
     from openpyxl import load_workbook
     ct.suppress_thermo_warnings()

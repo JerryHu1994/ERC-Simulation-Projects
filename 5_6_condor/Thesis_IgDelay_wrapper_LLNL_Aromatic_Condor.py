@@ -16,7 +16,7 @@ import time
 import h5py
 # from scipy.interpolate import interp1d 
 import math
-from openpyxl import load_workbook
+#from openpyxl import load_workbook
 
 
 # handle the arguemnts
@@ -57,17 +57,22 @@ Tau_mix=np.zeros((np.size(EvalIndices),1)); FinalTemp=np.zeros((np.size(EvalIndi
 Tau_Iso_RK=np.zeros((np.size(EvalIndices),1)); FinalTempIso_RK=np.zeros((np.size(EvalIndices),1));
 Crank_Points=np.zeros((np.size(EvalIndices),1));
 
-#for i in range(np.size(EvalIndices)):
 
-i = jobid
-if np.remainder(i,380)<1e-8:
-    print('At Crank Angle'+str(CA[i]))
-x_current=X[int(EvalIndices[i]),:]
-Temp=T[int(EvalIndices[i])]
-Press=P[int(EvalIndices[i])]
-[Tau_mix[i], FinalTemp[i]]=CV_IgDelay_Thesis(x_current,Temp,Press,PureFlag,fname,RK_flag)
-    
-[Tau_Iso_RK[i], FinalTempIso_RK[i]]=CV_IgDelay_Thesis(x_current,Temp,Press,1,fname,RK_flag)
+loopsize = 57
+start = jobid*loopsize
+end = start + loopsize - 1
+subloop = np.linspace(start, end, loopsize)
+print ("starting index: {}".format(int(start)))
+print ("ending index: {}".format(int(end)))
+for i in subloop:
+    i = int(i)
+    if np.remainder(i,380)<1e-8:
+        print('At Crank Angle'+str(CA[i]))
+    x_current=X[int(EvalIndices[i]),:]
+    Temp=T[int(EvalIndices[i])]
+    Press=P[int(EvalIndices[i])]
+    [Tau_mix[i], FinalTemp[i]]=CV_IgDelay_Thesis(x_current,Temp,Press,PureFlag,fname,RK_flag)
+    [Tau_Iso_RK[i], FinalTempIso_RK[i]]=CV_IgDelay_Thesis(x_current,Temp,Press,1,fname,RK_flag)
 
 Crank_Points=CA#[EvalIndices.astype(int)]
 
