@@ -16,7 +16,7 @@ Tau_Iso_RK=np.zeros((np.size(EvalIndices),1))
 Crank_Points=np.zeros((np.size(EvalIndices),1));
 
 for i in range(40):
-	start,end = i*57, i*57+56
+	start,end = i*57, i*57+57
 	file_name = 'npz/Iso_1000_90C_IgDel_Comparison_Full_CA_%d.npz'%i
 	curr_file = np.load(file_name)
 
